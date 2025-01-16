@@ -1,0 +1,15 @@
+video_plan:
+  description: >
+    Develop a comprehensive plan for a video focused on the niche of {niche}, 
+    including script, storyboard, and production notes.
+  expected_output: >
+    A video plan for the niche of {niche}.
+  agent: content_creator
+
+video_script:
+  description: >
+    Take the video plan developed by the content_creator and flesh out the details, 
+    including writing the script, creating a detailed storyboard, and outlining production notes.
+  expected_output: >
+    A fully developed script in bullet point form, storyboard, and production plan based on the video plan.
+  agent: content_writer
