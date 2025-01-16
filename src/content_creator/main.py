@@ -11,28 +11,29 @@ load_dotenv()
 
 
 class ContentCreationFlow(Flow):
-    input_str = ""
+    niche = ""
+    topic = ""
 
     @start()
     def starting_crew(self):
         print("**** Starting the Content Creation Process *******")
-        input_st = input("What's your niche?")
-        self.input_str = input_st
+        self.niche = input("What's your niche?\n")
+        self.topic = input("What's the topic of today's video? \n")
 
     @listen(starting_crew)
     def generate_content_plan(self):
         result = (
             ContentCreationCrew()
             .crew()
-            .kickoff(inputs={"niche": self.input_str, "audience":"adults"})
+            .kickoff(inputs={"niche": self.topic, "audience":"adults"})
         )
-        print(result.raw)
         return result.raw
     
-    # @listen(generate_content_plan)
-    # def write_content_from_plan(self, plan):
-    #     print("**** Now in writer ****")
-    #     result = (Content)
+    @listen(generate_content_plan)
+    def write_content_from_plan(self, plan):
+        print("**** Now in saver ****")
+        with open(f"{self.niche}.md", "w") as readme_file:
+            readme_file.write(plan)
 
 
 def kickoff():
